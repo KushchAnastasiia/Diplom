@@ -1,0 +1,77 @@
+version: '3.1'
+
+services:
+  app: &app
+    container_name: med_app_container
+    build:
+      context: .
+      dockerfile: ./docker/dev/Dockerfile
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./src:/src
+    ports:
+      - 8000:8000
+    command: python manage.py runserver 0.0.0.0:8000
+    networks:
+      - recomendation-med
+    depends_on:
+      - postgres
+      - rabbitmq
+      - celery_worker
+  postgres:
+    container_name: med_postgres_container
+    image: postgres:11.2
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - recomendation-med
+  pgadmin:
+    container_name: med_pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 
+      PGADMIN_DEFAULT_PASSWORD: 
+    volumes:
+      - pgadmin:/root/.pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - recomendation-med
+  rabbitmq:
+    container_name: med_rabbitmq_container
+    hostname: rabbit
+    image: rabbitmq:3.6.6-management
+    environment:
+      RABBITMQ_DEFAULT_USER: 
+      RABBITMQ_DEFAULT_PASS: 
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - recomendation-med
+  celery_worker:
+    container_name: med_celery_container
+    <<: *app
+    command: celery -A main worker --loglevel=info
+    ports: []
+    networks:
+      - recomendation-med
+    depends_on:
+      - rabbitmq
+      - postgres
+    restart: unless-stopped
+
+networks:
+  recomendation-med:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:

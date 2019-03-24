@@ -1,0 +1,12 @@
+[MAIL]
+username=
+password=
+
+[DB]
+host=
+user=
+name=
+pass=
+
+[RABBIT]
+url=amqp://guest:guest@localhost:5672
