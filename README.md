@@ -46,3 +46,10 @@ virtualenv -p python3.7 .venv
 ``
 pip install --no-cache-dir -r requirements/dev.txt
 ```
+
+
+Чтоб удалить содержимое докер контейнеров:
+
+```
+docker-compose down --rmi all -v --remove-orphans
+```
