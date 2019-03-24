@@ -43,6 +43,6 @@ virtualenv -p python3.7 .venv
 . .venv/bin/activate (. .venv/Scripts/activate for Windows)
 ```
 
-``
+```
 pip install --no-cache-dir -r requirements/dev.txt
 ```
