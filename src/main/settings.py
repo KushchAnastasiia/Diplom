@@ -51,11 +51,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'app',
+    'equipment',
     'ckeditor_uploader',
     'ckeditor',
     'rest_framework',
-    'frontend'
 ]
 
 MIDDLEWARE = [
@@ -167,9 +166,9 @@ EMAIL_HOST_PASSWORD = config.get("MAIL", "password")
 EMAIL_PORT = 587
 EMAIL_HOST = 'smtp.gmail.com'
 
-POSTS_PER_PAGE = int(config.get('APP', 'posts_per_page'))
+EQ_PER_PAGE = int(config.get('APP', 'eq_per_page'))
 
-## Logging configuration
+# Logging configuration
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

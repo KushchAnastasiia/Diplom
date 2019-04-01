@@ -1,8 +1,8 @@
-version: '3.1'
+version: '3'
 
 services:
-  python: &python
-    container_name: python_container
+  app: &app
+    container_name: med_python_container
     build:
       context: .
       dockerfile: ./docker/dev/Dockerfile
@@ -21,11 +21,11 @@ services:
       - celery_worker
     # restart: unless-stopped
   postgres:
-    container_name: postgres_container
+    container_name: med_postgres_container
     image: postgres:11.2
     restart: always
     environment:
-      POSTGRES_PASSWORD: adminpassword
+      POSTGRES_PASSWORD:
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres
@@ -34,20 +34,20 @@ services:
     networks:
       - cisco-zntu
   pgadmin:
-    container_name: pgadmin_container
+    container_name: med_pgadmin_container
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@ciscozntu.edu.ua}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-adminpassword}
+      PGADMIN_DEFAULT_EMAIL: admin@ciscozntu.edu.ua
+      PGADMIN_DEFAULT_PASSWORD:
     volumes:
       - pgadmin:/root/.pgadmin
     ports:
-      - "${PGADMIN_PORT:-5050}:80"
+      - "5050:80"
     networks:
       - cisco-zntu
 #    restart: unless-stopped
   rabbitmq:
-    container_name: rabbitmq_container
+    container_name: med_rabbitmq_container
     hostname: rabbit
     image: rabbitmq:3.6.6-management
     environment:
@@ -60,9 +60,9 @@ services:
       - cisco-zntu
 #    restart: unless-stopped
   celery_worker:
-    container_name: celery_container
-    <<: *python
-    command: celery -A main worker --loglevel=info
+    container_name: med_celery_container
+    <<: *app
+#    command: celery -A main worker --loglevel=info
     ports: []
     networks:
       - cisco-zntu
