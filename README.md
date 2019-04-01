@@ -13,15 +13,13 @@
 5. в корне проекта вызвать команды:
 
 ```
-docker-compose build
+docker-compose build && docker-compose up
 ```
 
-```
-docker-compose run app python manage.py migrate
-```
+в другой консоли из корня проекта
 
 ```
-docker-compose up
+docker-compose run app python manage.py migrate && docker-compose run app python mange.py createsuperuser
 ```
 
 Сервер с проектом запущен на http://localhost:8000
@@ -47,9 +45,9 @@ virtualenv -p python3.7 .venv
 pip install --no-cache-dir -r requirements/dev.txt
 ```
 
-
 Чтоб удалить содержимое докер контейнеров:
 
 ```
 docker-compose down --rmi all -v --remove-orphans
 ```
+
