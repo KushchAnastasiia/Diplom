@@ -1,8 +1,8 @@
-version: '3.1'
+version: '3'
 
 services:
   app: &app
-    container_name: med_app_container
+    container_name: med_python_container
     build:
       context: .
       dockerfile: ./docker/dev/Dockerfile
@@ -14,62 +14,65 @@ services:
       - 8000:8000
     command: python manage.py runserver 0.0.0.0:8000
     networks:
-      - recomendation-med
+      - cisco-zntu
     depends_on:
       - postgres
       - rabbitmq
       - celery_worker
+    # restart: unless-stopped
   postgres:
     container_name: med_postgres_container
     image: postgres:11.2
     restart: always
     environment:
-      POSTGRES_PASSWORD: 
+      POSTGRES_PASSWORD:
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres
     ports:
       - "5432:5432"
     networks:
-      - recomendation-med
+      - cisco-zntu
   pgadmin:
     container_name: med_pgadmin_container
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: 
-      PGADMIN_DEFAULT_PASSWORD: 
+      PGADMIN_DEFAULT_EMAIL: admin@ciscozntu.edu.ua
+      PGADMIN_DEFAULT_PASSWORD:
     volumes:
       - pgadmin:/root/.pgadmin
     ports:
       - "5050:80"
     networks:
-      - recomendation-med
+      - cisco-zntu
+#    restart: unless-stopped
   rabbitmq:
     container_name: med_rabbitmq_container
     hostname: rabbit
     image: rabbitmq:3.6.6-management
     environment:
-      RABBITMQ_DEFAULT_USER: 
-      RABBITMQ_DEFAULT_PASS: 
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: user
     ports:
       - "5672:5672"
       - "15672:15672"
     networks:
-      - recomendation-med
+      - cisco-zntu
+#    restart: unless-stopped
   celery_worker:
     container_name: med_celery_container
     <<: *app
-    command: celery -A main worker --loglevel=info
+#    command: celery -A main worker --loglevel=info
     ports: []
     networks:
-      - recomendation-med
+      - cisco-zntu
     depends_on:
       - rabbitmq
       - postgres
     restart: unless-stopped
 
 networks:
-  recomendation-med:
+  cisco-zntu:
     driver: bridge
 
 volumes:
