@@ -32,5 +32,7 @@ fi
 
 export HOME=/home/$PYTHON_RUN_USER
 
+
+
 echo "Running command '$*'"
 exec su -p - ${PYTHON_RUN_USER} -s /bin/bash -c "$*"
