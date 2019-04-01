@@ -56,7 +56,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'rest_framework',
     'knox',
-    'accounts'
+    'accounts',
+    'personal_area'
 ]
 
 REST_FRAMEWORK = {
