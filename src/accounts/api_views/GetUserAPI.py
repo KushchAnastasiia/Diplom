@@ -4,6 +4,8 @@ from rest_framework import status
 from ..serializers import UserSerializer, LoginSerializer
 from personal_area.serializers import FeaturedEquipmentSerializer
 from personal_area.models import FeaturedEquipment
+from equipment.models import Equipment
+from equipment.serializers import EquipmentSerializer
 
 
 class GetUserAPI(generics.RetrieveAPIView):
@@ -16,7 +18,13 @@ class GetUserAPI(generics.RetrieveAPIView):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         featured_list = FeaturedEquipment.objects.filter(user_id=instance.id)
-        featured_serializer = FeaturedEquipmentSerializer(featured_list, many=True)
+
+        featured_data = []
+
+        for x in featured_list:
+            featured_data.append(Equipment.objects.filter(id=x.equipment_id).first())
+
+        featured_serializer = EquipmentSerializer(featured_data, context=self.get_serializer_context(), many=True)
         return Response({
             'data': {
                 'user': serializer.data,
