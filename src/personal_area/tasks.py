@@ -16,3 +16,12 @@ def send_message(title="Title", description="Description"):
     )
 
     return 'Message was sent!'
+
+
+@shared_task
+def add_to_featured(serializer=None, user_id=None, eq_id=None):
+    if serializer:
+        serializer.save()
+        return 'Added to featured!'
+
+    return 'Nothing to save!'
