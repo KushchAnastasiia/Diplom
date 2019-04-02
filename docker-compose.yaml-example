@@ -62,7 +62,7 @@ services:
   celery_worker:
     container_name: med_celery_container
     <<: *app
-#    command: celery -A main worker --loglevel=info
+    command: celery -A main worker --loglevel=info
     ports: []
     networks:
       - cisco-zntu
