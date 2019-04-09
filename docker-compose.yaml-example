@@ -14,7 +14,7 @@ services:
       - 8000:8000
     command: python manage.py runserver 0.0.0.0:8000
     networks:
-      - cisco-zntu
+      - med
     depends_on:
       - postgres
       - rabbitmq
@@ -32,19 +32,19 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - cisco-zntu
+      - med
   pgadmin:
     container_name: med_pgadmin_container
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@ciscozntu.edu.ua
+      PGADMIN_DEFAULT_EMAIL: admin@med.com
       PGADMIN_DEFAULT_PASSWORD:
     volumes:
       - pgadmin:/root/.pgadmin
     ports:
-      - "5050:80"
+      - "5050:5050"
     networks:
-      - cisco-zntu
+      - med
 #    restart: unless-stopped
   rabbitmq:
     container_name: med_rabbitmq_container
@@ -65,14 +65,14 @@ services:
     command: celery -A main worker --loglevel=info
     ports: []
     networks:
-      - cisco-zntu
+      - med
     depends_on:
       - rabbitmq
       - postgres
     restart: unless-stopped
 
 networks:
-  cisco-zntu:
+  med:
     driver: bridge
 
 volumes:
