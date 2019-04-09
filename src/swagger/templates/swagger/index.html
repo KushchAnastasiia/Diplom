@@ -5,9 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "swagger-ui.css" %}">
 </head>
 <body>
-    <h1>Swagger</h1>
-    <div id="app"></div>
+    <div id="swagger-ui"></div>
+    <script src="{% static "swagger-ui-bundle.js" %}"> </script>
+    <script src="{% static "swagger-ui-standalone-preset.js" %}"> </script>
+    <script>
+            window.onload = function() {
+              const ui = SwaggerUIBundle({
+                "dom_id": "#swagger-ui",
+                deepLinking: true,
+                presets: [
+                  SwaggerUIBundle.presets.apis,
+                  SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                  SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                layout: "StandaloneLayout",
+                validatorUrl: "https://validator.swagger.io/validator",
+                url: "{% static 'docs/index.yaml' %}",
+              })       
+              window.ui = ui
+            }
+          </script>
 </body>
 </html>
