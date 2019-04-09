@@ -19,7 +19,7 @@ docker-compose build && docker-compose up
 в другой консоли из корня проекта
 
 ```
-docker-compose run app python manage.py migrate && docker-compose run app python mange.py createsuperuser
+docker-compose run app python manage.py migrate && docker-compose run app python manage.py createsuperuser
 ```
 
 Сервер с проектом запущен на http://localhost:8000
