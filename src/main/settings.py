@@ -57,7 +57,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'knox',
     'accounts',
-    'personal_area'
+    'personal_area',
+    'swagger'
 ]
 
 REST_FRAMEWORK = {
