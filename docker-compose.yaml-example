@@ -57,7 +57,7 @@ services:
       - "5672:5672"
       - "15672:15672"
     networks:
-      - cisco-zntu
+      - med
 #    restart: unless-stopped
   celery_worker:
     container_name: med_celery_container
