@@ -23,7 +23,8 @@
                 ],
                 requestInterceptor: function(request) {
                     if (request.headers.Authorization){
-                        request.headers.Authorization = "Token " + request.headers.Authorization;
+                        let str = request.headers.Authorization.replace("Bearer", "Token");
+                        request.headers.Authorization = str;
                     }
                     return request;
                 },

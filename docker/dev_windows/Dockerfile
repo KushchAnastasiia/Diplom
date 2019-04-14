@@ -7,7 +7,7 @@ WORKDIR /src
 
 RUN pip install --no-cache-dir -r requirements/dev.txt
 
-COPY ./docker/dev/entrypoint.sh /entrypoint.sh
+COPY ./docker/dev_windows/entrypoint.sh /entrypoint.sh
 
 # RUN chmod +x /entrypoint.sh
 
