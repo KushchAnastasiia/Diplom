@@ -1,15 +1,7 @@
 openapi: 3.0.0
 info:
-  description: "This is a sample server Petstore server.
-  You can find out more about     
-  Swagger at [http://swagger.io](http://swagger.io) or
-   on [irc.freenode.net, #swagger](http://swagger.io/irc/).
-         For this sample, you can use the api key `special-key` 
-         to test the authorization     filters."
   version: "1.0.0"
   title: "Med API documentation"
-  contact:
-    email: "admin@admin.com"
 tags:
   - name: "equipment"
     description: "CRUD equipment"
@@ -17,23 +9,11 @@ tags:
     description: "Operations about user"
 servers:
   - url: http://localhost:8000
-  # - url: https://localhost:8000
-
 paths:
   /api/equipment/:
     get:
-      tags:
-        - "equipment"
-      summary: "Get equipment list"
-      description: "Get equipment list"
-      x-swagger-router-controller: SampleController
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      responses:
-        200:
-          description: "ok"
+      
+      
   /api/auth/user/:
     get:
       tags:
@@ -98,7 +78,6 @@ paths:
         "400":
           description: Invalid username/password supplied
 components:
-# a520a33545d6fe752c01e01e4557a013c09aa6e89574707b00b1500344ac51a1
   securitySchemes:
     Token:
       description: "
@@ -113,5 +92,4 @@ components:
       bearerFormat: JWT
   schemas:
     Eqipment:
-      type: object
       $ref: './models.yaml#/Equipment'

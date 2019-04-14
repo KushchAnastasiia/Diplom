@@ -1,0 +1,13 @@
+getAll:
+  tags:
+    - "equipment"
+  summary: "Get equipment list"
+  description: "Get equipment list"
+  x-swagger-router-controller: SampleController
+  consumes:
+  - application/json
+  produces:
+  - application/json
+  responses:
+    200:
+      $ref: responses.yaml#/200all
