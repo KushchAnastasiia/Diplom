@@ -15,6 +15,7 @@ class Equipment(models.Model):
     currency = models.CharField(max_length=16)
     guarantee = models.DecimalField(default=0, decimal_places=3, max_digits=10)
     in_case = models.BooleanField(default=False)
+    
     manufacture = models.ForeignKey(
         to=Manufacturer, on_delete=models.CASCADE
     )
