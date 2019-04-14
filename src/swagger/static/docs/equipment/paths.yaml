@@ -1,13 +1,62 @@
 getAll:
   tags:
-    - "equipment"
+    - equipment
   summary: "Get equipment list"
   description: "Get equipment list"
   x-swagger-router-controller: SampleController
   consumes:
-  - application/json
+    - application/json
   produces:
-  - application/json
+    - application/json
+  responses:
+    200:
+      $ref: responses.yaml#/200all
+getCurrent:
+  tags:
+    - equipment
+  summary: "Get current equipment"
+  description: "Get current equipment"
+  x-swagger-router-controller: SampleController
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: string
+      required: true
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  responses:
+    200:
+      $ref: responses.yaml#/200all
+create:
+  tags:
+    - equipment
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  requestBody:
+    content:
+      'application/json':
+        schema:
+          properties:
+            email:
+              description: The user email
+              type: string
+              example: test@test.com
+            username:
+              description: The user email
+              type: string
+              example: test
+            password:
+              description: The user email
+              type: string
+              example: '123456'
+          required:
+            - username
+            - password
   responses:
     200:
       $ref: responses.yaml#/200all

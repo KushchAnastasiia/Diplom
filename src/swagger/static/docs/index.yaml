@@ -12,8 +12,19 @@ servers:
 paths:
   /api/equipment/:
     get:
-      
-      
+      tags:
+        - equipment
+      $ref: ./equipment/paths.yaml#/getAll
+    post:
+      tags:
+        - equipment
+      $ref: ./equipment/paths.yaml#/create
+  /api/equipment/{id}:
+    get:
+      tags:
+        - equipment
+      $ref: ./equipment/paths.yaml#/getCurrent
+    
   /api/auth/user/:
     get:
       tags:
@@ -93,3 +104,14 @@ components:
   schemas:
     Eqipment:
       $ref: './models.yaml#/Equipment'
+    Manufacturer:
+      $ref: './models.yaml#/Manufacturer'
+    Country:
+      $ref: './models.yaml#/Country'
+    Type:
+      $ref: './models.yaml#/Type'
+    Group:
+      $ref: './models.yaml#/Group'
+    SubGroup:
+      $ref: './models.yaml#/SubGroup'
+    
