@@ -1,11 +1,11 @@
 from django.conf.urls import url
 from rest_framework import routers
 
-from .api_views import EquipmentViewSet, TestViewSet
+from .api_views import EquipmentViewSet
 
 
 urlpatterns = [
-    url(r'api/test-upload', TestViewSet.as_view(), 'api-upload')
+    # url(r'^api/test-upload/$', TestViewSet.as_view(), 'api-upload')
 ]
 
 router = routers.DefaultRouter()

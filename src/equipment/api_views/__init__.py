@@ -1,7 +1,7 @@
 from .EquipmentViewSet import EquipmentViewSet
-from .TestViewSet import TestViewSet
+# from .TestViewSet import TestViewSet
 
 
 __all__ = [
-    'EquipmentViewSet', 'TestViewSet'
+    'EquipmentViewSet',
 ]
