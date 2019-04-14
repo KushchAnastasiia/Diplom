@@ -13,7 +13,7 @@
 5. в корне проекта вызвать команды:
 
 ```
-docker-compose build && docker-compose up
+docker-compose up --build
 ```
 
 в другой консоли из корня проекта
