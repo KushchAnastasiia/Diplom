@@ -1,0 +1,103 @@
+Country:
+  type: object
+  required:
+    - name
+    - code
+  properties:
+    name:
+      type: string
+      example: Ukraine
+    code:
+      type: string
+      example: ua
+  xml:
+    name: Country
+Manufacturer:
+  type: object
+  required:
+    - name
+    - description
+    - country
+  properties:
+    name:
+      type: string
+      example: "manufactorer"
+    description:
+      type: string
+      example: "manufacturer description"
+    country:
+      $ref: '#/Country'
+    image:
+      type: "string"
+      example: "/path/example"
+  xml:
+    Manufacturer
+Type:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      example: Ukraine
+  xml:
+    name: Type
+Group:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      example: Ukraine
+  xml:
+    name: Group
+SubGroup:
+  type: object
+  required:
+    - name
+    - group
+  properties:
+    name:
+      type: string
+      example: Ukraine
+    group:
+      $ref: '#/Group'
+  xml:
+    name: SubGroup
+Equipment:
+  type: "object"
+  required:
+    - "name"
+  properties:
+    name:
+      type: string
+      example: eq1
+    description:
+      type: string
+      example: eq description
+    price:
+      type: decimal
+      example: 10.1
+    currency:
+      type: string
+      example: UAH
+    guarantee:
+      type: decimal
+      example: 1.5
+    in_case:
+      type: boolean
+      example: true
+    manufacture:
+      $ref: '#/Manufacturer'
+    type_of:
+      $ref: '#/Type'
+    subgroup:
+      $ref: '#/SubGroup'
+    group:
+      $ref: '#/Group'
+    image:
+      type: string
+      example: "/path/to"
+  xml:
+    Equipment
