@@ -112,6 +112,3 @@ docker-compose.yaml
 
 .idea
 .idea/*
-
-.vscode
-.vscode/*
