@@ -1,4 +1,5 @@
 from rest_framework import generics, permissions, viewsets
+from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
 from ..serializers import *
 from helpers import CustomPaginator
 from ..models import *
@@ -6,11 +7,16 @@ from rest_framework.response import Response
 from django.conf import settings
 
 
+class ReadOnly(BasePermission):
+    def has_permission(self, request, view):
+        return request.method in SAFE_METHODS
+
+
 class EquipmentViewSet(viewsets.ModelViewSet):
 
     queryset = Equipment.objects.all()
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAdminUser | ReadOnly,
     ]
     serializer_class = EquipmentSerializer
     pagination_class = CustomPaginator
@@ -24,6 +30,10 @@ class EquipmentViewSet(viewsets.ModelViewSet):
         manufacture = ManufacturerSerializer(
             Manufacturer.objects.filter(id=int(d["manufacture"])).first()).data
         
+        country = CountrySerializer(
+            Country.objects.filter(id=int(manufacture["country"]))
+        )
+        
         subgroup = SubGroupSerializer(
             SubGroup.objects.filter(id=int(d["subgroup"])).first()).data
         
@@ -34,6 +44,7 @@ class EquipmentViewSet(viewsets.ModelViewSet):
         ctx['manufacture'] = manufacture
         ctx['subgroup'] = subgroup
         ctx['group'] = group
+        ctx['country'] = country
         
         return ctx
 
