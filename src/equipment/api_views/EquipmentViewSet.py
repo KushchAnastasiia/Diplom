@@ -31,8 +31,8 @@ class EquipmentViewSet(viewsets.ModelViewSet):
             Manufacturer.objects.filter(id=int(d["manufacture"])).first()).data
         
         country = CountrySerializer(
-            Country.objects.filter(id=int(manufacture["country"]))
-        )
+            Country.objects.filter(id=int(manufacture["country"])).first()
+        ).data
         
         subgroup = SubGroupSerializer(
             SubGroup.objects.filter(id=int(d["subgroup"])).first()).data
