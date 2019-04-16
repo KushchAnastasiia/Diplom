@@ -46,3 +46,9 @@ class SubGroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubGroup
         fields = '__all__'
+
+
+class MarketSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Market
+        fields = '__all__'

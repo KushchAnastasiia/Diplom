@@ -10,7 +10,6 @@ class EquipmentMarketConnection(models.Model):
     market = models.ForeignKey(
         to=Market, on_delete=models.CASCADE
     )
-    location = models.CharField(max_length=512)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.equipment.name} --> {self.market.name}'

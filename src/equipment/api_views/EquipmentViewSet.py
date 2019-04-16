@@ -40,12 +40,20 @@ class EquipmentViewSet(viewsets.ModelViewSet):
         group = GroupSerializer(
             Group.objects.filter(id=int(subgroup["id"])).first()).data
         
+        market_list = []
+        market_id_list = EquipmentMarketConnection.objects.filter(equipment=d['id']).all()
+
+        for x in market_id_list:
+            market_list.append(
+                MarketSerializer(x.market).data)
+        
         ctx['type_of'] = type_of
         ctx['manufacture'] = manufacture
         ctx['subgroup'] = subgroup
         ctx['group'] = group
         ctx['country'] = country
-        
+        ctx['markets'] = market_list
+
         return ctx
 
     def list(self, request, *args, **kwargs):
