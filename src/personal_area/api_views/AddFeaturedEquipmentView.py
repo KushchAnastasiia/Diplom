@@ -1,6 +1,5 @@
 from rest_framework import generics, permissions, viewsets
 from rest_framework.response import Response
-from rest_framework.decorators import action
 from ..tasks import add_to_featured
 from rest_framework import status
 from personal_area.serializers import FeaturedEquipmentSerializer
@@ -8,6 +7,7 @@ from personal_area.models import FeaturedEquipment
 from equipment.models import Equipment
 from equipment.serializers import EquipmentSerializer
 from helpers import get_full_equipment_data
+from django.conf import settings
 
 
 class AddFeaturedEquipmentView(viewsets.ModelViewSet):
@@ -78,16 +78,29 @@ class AddFeaturedEquipmentView(viewsets.ModelViewSet):
         }, status=status.HTTP_401_UNAUTHORIZED)
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        add_to_featured(serializer=serializer)
-        headers = self.get_success_headers(serializer.data)
+        featured = len(FeaturedEquipment.objects.filter(
+            user_id=request.user.id).all())
+
+        if featured < settings.USER_FEATURED_COUNT:
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            add_to_featured(serializer=serializer)
+            headers = self.get_success_headers(serializer.data)
+
+            return Response({
+                'data': {
+                    'current_count': featured,
+                    'total_count': settings.USER_FEATURED_COUNT,
+                    'feature': serializer.data,
+                }
+            }, status=status.HTTP_201_CREATED, headers=headers)
 
         return Response({
-            'data': {
-                'feature': serializer.data,
+            'data': {},
+            'errors': {
+                'message': 'Message limit was exceeded!'
             }
-        }, status=status.HTTP_201_CREATED, headers=headers)
+        }, status=status.HTTP_403_FORBIDDEN)
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()

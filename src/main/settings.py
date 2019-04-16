@@ -181,6 +181,7 @@ EMAIL_PORT = 587
 EMAIL_HOST = 'smtp.gmail.com'
 
 EQ_PER_PAGE = int(config.get('APP', 'eq_per_page'))
+USER_FEATURED_COUNT = int(config.get('APP', 'user_featured_count'))
 
 # Logging configuration
 LOGGING = {
