@@ -19,7 +19,7 @@
                 type: integer
                 example: 1
 200single:
-  description: A list of equipments
+  description: A current equipment
   content:
     application/json:
       schema:

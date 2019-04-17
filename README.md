@@ -4,7 +4,7 @@
 
 1. проверить чтоб был установлен docker и docker-compose
 
-2. скопировать файл docker-compose.yaml-example и назвать его docker-compose.yaml
+2. скопировать файл docker-compose.yaml-example(это для линукс-систем, для виндовс систем: docker-compose.yaml-example-windows) и назвать его docker-compose.yaml
 
 3. в скопированном файле вписать пароли и логины(в соответствующих местах) там где необходимо. Пароли и логины совершенно любые, главное чтоб их не было в docker-compose.yaml-example
 
@@ -28,6 +28,7 @@ docker-compose run app python manage.py migrate && docker-compose run app python
 
 Админ панель для RabbitMQ на http://localhost:15672
 
+Все апи расписаны по маршруту http://localhost:8000 в swagger, там можно протестировать запросы и посмотреть все возможные ответы под каждый запрос.
 
 ### Additional info
 
