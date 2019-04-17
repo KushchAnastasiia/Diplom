@@ -1,0 +1,81 @@
+getAll:
+  tags:
+    - featured equipment
+  summary: "Get featured list"
+  description: "Get featured list"
+  x-swagger-router-controller: SampleController
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  responses:
+    200:
+      $ref: responses.yaml#/200all
+getCurrent:
+  tags:
+    - featured equipment
+  summary: "Get current featured"
+  description: "Get current featured"
+  x-swagger-router-controller: SampleController
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: string
+      required: true
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  responses:
+    200:
+      $ref: responses.yaml#/200all
+create:
+  tags:
+    - featured equipment
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  requestBody:
+    content:
+      'application/json':
+        schema:
+          properties:
+            user_id:
+              description: The user`s current id
+              type: string
+              example: eq1
+            equipment_id:
+              description: The equipment id that is adding to featured
+              type: string
+              example: eq1 descr
+          required:
+            - user_id
+            - equipment_id
+  responses:
+    200:
+      $ref: responses.yaml#/200all
+  security:
+    - Token: []
+delete:
+  tags:
+    - featured equipment
+  summary: "Delete current featured"
+  description: "Delete current featured"
+  x-swagger-router-controller: SampleController
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: string
+      required: true
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  responses:
+    200:
+      $ref: responses.yaml#/200all
+  security:
+    - Token: []

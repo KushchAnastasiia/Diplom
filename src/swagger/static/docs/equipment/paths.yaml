@@ -95,3 +95,83 @@ create:
   responses:
     200:
       $ref: responses.yaml#/200all
+  security:
+    - Token: []
+update:
+  tags:
+    - equipment
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  requestBody:
+    content:
+      'application/json':
+        schema:
+          properties:
+            name:
+              description: The equipment name
+              type: string
+              example: eq1
+            description:
+              description: The equipment description
+              type: string
+              example: eq1 descr
+            price:
+              description: The equipment price
+              type: decimal
+              example: 12
+            currency:
+              description: The equipment price currency
+              type: string
+              example: UAH
+            guarantee:
+              description: The equipment guarantee
+              type: decimal
+              example: 0.5
+            in_case:
+              description: The equipment in case
+              type: boolean
+              example: true
+            manufacture:
+              description: The equipment manufacture id
+              type: string
+              example: 1
+            type_of:
+              description: The equipment type_of id
+              type: string
+              example: 1
+            subgroup:
+              description: The equipment subgroup id
+              type: string
+              example: 1
+            image:
+              description: The equipment image path
+              type: image
+              example: null
+  responses:
+    200:
+      $ref: responses.yaml#/200all
+  security:
+    - Token: []
+delete:
+  tags:
+    - equipment
+  summary: "Delete current equipment"
+  description: "Delete current equipment"
+  x-swagger-router-controller: SampleController
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: string
+      required: true
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  responses:
+    200:
+      $ref: responses.yaml#/200all
+  security:
+    - Token: []
