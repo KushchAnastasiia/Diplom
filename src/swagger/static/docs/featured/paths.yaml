@@ -1,0 +1,99 @@
+getAll:
+  tags:
+    - featured equipment
+  summary: "Get featured list"
+  description: "Get featured list"
+  x-swagger-router-controller: SampleController
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  responses:
+    200:
+      $ref: responses.yaml#/200all
+    401:
+      $ref: responses.yaml#/401error
+    '5XX':
+      description: Unexpected error.
+  security:
+    - Token: []
+getCurrent:
+  tags:
+    - featured equipment
+  summary: "Get current featured"
+  description: "Get current featured"
+  x-swagger-router-controller: SampleController
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: string
+      required: true
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  responses:
+    200:
+      $ref: responses.yaml#/200single
+    401:
+      $ref: responses.yaml#/401error
+    '5XX':
+      description: Unexpected error.
+  security:
+    - Token: []
+create:
+  tags:
+    - featured equipment
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  requestBody:
+    content:
+      'application/json':
+        schema:
+          properties:
+            equipment_id:
+              description: The equipment id that is adding to featured
+              type: string
+              example: 1
+          required:
+            - user_id
+            - equipment_id
+  responses:
+    200:
+      $ref: responses.yaml#/200single
+    401:
+      $ref: responses.yaml#/401error
+    403:
+      $ref: responses.yaml#/403error
+    '5XX':
+      description: Unexpected error.
+  security:
+    - Token: []
+delete:
+  tags:
+    - featured equipment
+  summary: "Delete current featured"
+  description: "Delete current featured"
+  x-swagger-router-controller: SampleController
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: string
+      required: true
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  responses:
+    200:
+      $ref: responses.yaml#/200single
+    401:
+      $ref: responses.yaml#/401error
+    '5XX':
+      description: Unexpected error.
+  security:
+    - Token: []

@@ -1,11 +1,11 @@
 200all:
-  description: A list of equipments
+  description: A list of featured equipments
   content:
     application/json:
       schema:
         type: object
         properties:
-          data: 
+          data:
             type: array
             items:
               $ref: '../models.yaml#/Equipment'
@@ -19,7 +19,7 @@
                 type: integer
                 example: 1
 200single:
-  description: A list of equipments
+  description: Data of current featured equipment
   content:
     application/json:
       schema:
@@ -29,7 +29,7 @@
             type: object
             $ref: '../models.yaml#/Equipment'
 401error:
-  description: invalid token(in this case must be only admin)
+  description: invalid token
   content:
     application/json:
       schema:
@@ -38,3 +38,19 @@
           detail:
             type: string
             example: "Authentication credentials were not provided."
+403error:
+  description: to many featured in database!
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            additionalProperties: {}
+          errors:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Message limit was exceeded!"

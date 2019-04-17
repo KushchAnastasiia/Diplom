@@ -8,6 +8,6 @@ urlpatterns = [
 ]
 
 router = routers.DefaultRouter()
-router.register('api/add-featured', AddFeaturedEquipmentView, 'add-featured')
+router.register('api/featured', AddFeaturedEquipmentView, 'add-featured')
 
 urlpatterns += router.urls

@@ -28,11 +28,6 @@ MEDIA_URL = "/upload/"
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static_files/'
 
-FILE_UPLOAD_HANDLERS = [
-    'django.core.files.uploadhandler.MemoryFileUploadHandler',
-    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
-]
-
 APPEND_SLASH = True
 
 # Quick-start development settings - unsuitable for production
@@ -181,6 +176,7 @@ EMAIL_PORT = 587
 EMAIL_HOST = 'smtp.gmail.com'
 
 EQ_PER_PAGE = int(config.get('APP', 'eq_per_page'))
+USER_FEATURED_COUNT = int(config.get('APP', 'user_featured_count'))
 
 # Logging configuration
 LOGGING = {

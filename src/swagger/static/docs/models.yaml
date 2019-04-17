@@ -12,6 +12,24 @@ Country:
       example: ua
   xml:
     name: Country
+Market:
+  type: object
+  required:
+    - name
+    - location
+    - url
+  properties:
+    name:
+      type: string
+      example: 'market name'
+    url:
+      type: string
+      example: 'https://market.link.com'
+    location:
+      type: string
+      example: '[{x:5, y:10}, {x:5, y:5}]'
+  xml:
+    name: Market
 Manufacturer:
   type: object
   required:
@@ -94,10 +112,24 @@ Equipment:
       $ref: '#/Type'
     subgroup:
       $ref: '#/SubGroup'
-    group:
-      $ref: '#/Group'
+    markets:
+      type: array
+      items:
+        $ref: '#/Market'
     image:
       type: string
       example: "/path/to"
   xml:
     Equipment
+User:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 2
+    username:
+      type: string
+      example: test
+    email:
+      type: string
+      example: test@test.com

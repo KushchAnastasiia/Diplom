@@ -16,3 +16,4 @@ secret=
 debug=False
 eq_per_page=5
 host=
+user_featured_count=20
