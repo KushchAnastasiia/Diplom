@@ -46,7 +46,7 @@ paths:
         - "user"
       $ref: ./accounts/paths.yaml#/getUser
       security:
-      - Token: []
+        - Token: []
   /api/auth/register/:
     post:
       tags:
@@ -69,6 +69,8 @@ paths:
       tags:
         - featured equipment
       $ref: ./featured/paths.yaml#/getAll
+      security:
+        - Token: []
     post:
       tags:
         - featured equipment
@@ -80,6 +82,8 @@ paths:
       tags:
         - featured equipment
       $ref: ./featured/paths.yaml#/getCurrent
+      security:
+        - Token: []
     delete:
       tags:
         - featured equipment

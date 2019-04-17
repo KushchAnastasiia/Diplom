@@ -1,5 +1,5 @@
 getUser:
-   tags:
+  tags:
     - "user"
   summary: "Get user data"
   description: "Get equipment list"

@@ -82,6 +82,8 @@ class AddFeaturedEquipmentView(viewsets.ModelViewSet):
             user_id=request.user.id).all())
 
         if featured < settings.USER_FEATURED_COUNT:
+            data = request.data
+            data['user_id'] = request.user.id
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
             add_to_featured(serializer=serializer)

@@ -11,6 +11,8 @@ getAll:
   responses:
     200:
       $ref: responses.yaml#/200all
+  security:
+    - Token: []
 getCurrent:
   tags:
     - featured equipment
@@ -30,6 +32,8 @@ getCurrent:
   responses:
     200:
       $ref: responses.yaml#/200all
+  security:
+    - Token: []
 create:
   tags:
     - featured equipment
@@ -42,14 +46,10 @@ create:
       'application/json':
         schema:
           properties:
-            user_id:
-              description: The user`s current id
-              type: string
-              example: eq1
             equipment_id:
               description: The equipment id that is adding to featured
               type: string
-              example: eq1 descr
+              example: 1
           required:
             - user_id
             - equipment_id
