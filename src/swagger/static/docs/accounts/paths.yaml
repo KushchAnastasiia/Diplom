@@ -9,8 +9,12 @@ getUser:
   produces:
     - application/json
   responses:
-    200:
-      $ref: responses.yaml#/200all
+    202:
+      $ref: responses.yaml#/200user
+    401:
+      $ref: responses.yaml#/401error
+    '5XX':
+      description: Unexpected error.
   security:
     - Token: []
 register:
@@ -43,21 +47,10 @@ register:
             - username
             - password
   responses:
-    "200":
-      description: successful operation
-      schema:
-        type: string
-      headers:
-        X-Rate-Limit:
-          type: integer
-          format: int32
-          description: calls per hour allowed by the user
-        X-Expires-After:
-          type: string
-          format: date-time
-          description: date in UTC when token expires
-    "400":
-      description: Invalid username/password supplied
+    200:
+      $ref: responses.yaml#/200user
+    '5XX':
+      description: Unexpected error.
 login:
   tags:
     - user
@@ -75,7 +68,7 @@ login:
             username:
               description: The user email
               type: string
-              example: test
+              example: test4
             password:
               description: The user email
               type: string
@@ -84,21 +77,10 @@ login:
             - username
             - password
   responses:
-    "200":
-      description: successful operation
-      schema:
-        type: string
-      headers:
-        X-Rate-Limit:
-          type: integer
-          format: int32
-          description: calls per hour allowed by the user
-        X-Expires-After:
-          type: string
-          format: date-time
-          description: date in UTC when token expires
-    "400":
-      description: Invalid username/password supplied
+    200:
+      $ref: responses.yaml#/200user
+    '5XX':
+      description: Unexpected error.
 logout:
   tags:
     - user
@@ -108,5 +90,23 @@ logout:
     - application/json
   reduces:
     - application/json
+  responses:
+    200:
+      description: Logout was successfull.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "User has logged out successfully!"
+    401:
+      $ref: responses.yaml#/401error
+    '5XX':
+      description: Unexpected error.
   security:
     - Token: []

@@ -29,6 +29,8 @@ class AddFeaturedEquipmentView(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         if request.user:
             featured_list = FeaturedEquipment.objects.filter(user_id=request.user.id)
+            featured_count = len(FeaturedEquipment.objects.filter(
+                user_id=request.user.id).all())
 
             featured_data = []
 
@@ -43,6 +45,7 @@ class AddFeaturedEquipmentView(viewsets.ModelViewSet):
 
             return Response({
                 'data': {
+                    'current_count': featured_count,
                     'featured': featured_serializer,
                 }
             }, status=status.HTTP_202_ACCEPTED)
@@ -91,7 +94,7 @@ class AddFeaturedEquipmentView(viewsets.ModelViewSet):
 
             return Response({
                 'data': {
-                    'current_count': featured,
+                    'current_count': featured + 1,
                     'total_count': settings.USER_FEATURED_COUNT,
                     'feature': serializer.data,
                 }

@@ -28,11 +28,6 @@ MEDIA_URL = "/upload/"
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static_files/'
 
-FILE_UPLOAD_HANDLERS = [
-    'django.core.files.uploadhandler.MemoryFileUploadHandler',
-    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
-]
-
 APPEND_SLASH = True
 
 # Quick-start development settings - unsuitable for production

@@ -8,9 +8,17 @@ getAll:
     - application/json
   produces:
     - application/json
+  parameters:
+    - in: query
+      name: offset
+      schema:
+        type: integer
+        example: 1
   responses:
     200:
       $ref: responses.yaml#/200all
+    '5XX':
+      description: Unexpected error.
 getCurrent:
   tags:
     - equipment
@@ -29,7 +37,9 @@ getCurrent:
     - application/json
   responses:
     200:
-      $ref: responses.yaml#/200all
+      $ref: responses.yaml#/200single
+    '5XX':
+      description: Unexpected error.
 create:
   tags:
     - equipment
@@ -94,7 +104,11 @@ create:
             - subgroup
   responses:
     200:
-      $ref: responses.yaml#/200all
+      $ref: responses.yaml#/200single
+    401:
+      $ref: responses.yaml#/401error
+    '5XX':
+      description: Unexpected error.
   security:
     - Token: []
 update:
@@ -151,7 +165,11 @@ update:
               example: null
   responses:
     200:
-      $ref: responses.yaml#/200all
+      $ref: responses.yaml#/200single
+    401:
+      $ref: responses.yaml#/401error
+    '5XX':
+      description: Unexpected error.
   security:
     - Token: []
 delete:
@@ -172,6 +190,10 @@ delete:
     - application/json
   responses:
     200:
-      $ref: responses.yaml#/200all
+      $ref: responses.yaml#/200single
+    401:
+      $ref: responses.yaml#/401error
+    '5XX':
+      description: Unexpected error.
   security:
     - Token: []

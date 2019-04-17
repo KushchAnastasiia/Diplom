@@ -11,6 +11,10 @@ getAll:
   responses:
     200:
       $ref: responses.yaml#/200all
+    401:
+      $ref: responses.yaml#/401error
+    '5XX':
+      description: Unexpected error.
   security:
     - Token: []
 getCurrent:
@@ -31,7 +35,11 @@ getCurrent:
     - application/json
   responses:
     200:
-      $ref: responses.yaml#/200all
+      $ref: responses.yaml#/200single
+    401:
+      $ref: responses.yaml#/401error
+    '5XX':
+      description: Unexpected error.
   security:
     - Token: []
 create:
@@ -55,7 +63,13 @@ create:
             - equipment_id
   responses:
     200:
-      $ref: responses.yaml#/200all
+      $ref: responses.yaml#/200single
+    401:
+      $ref: responses.yaml#/401error
+    403:
+      $ref: responses.yaml#/403error
+    '5XX':
+      description: Unexpected error.
   security:
     - Token: []
 delete:
@@ -76,6 +90,10 @@ delete:
     - application/json
   responses:
     200:
-      $ref: responses.yaml#/200all
+      $ref: responses.yaml#/200single
+    401:
+      $ref: responses.yaml#/401error
+    '5XX':
+      description: Unexpected error.
   security:
     - Token: []

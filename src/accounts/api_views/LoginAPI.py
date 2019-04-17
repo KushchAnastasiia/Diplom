@@ -5,7 +5,11 @@ from ..serializers import UserSerializer, LoginSerializer
 
 
 class LoginAPI(generics.GenericAPIView):
+
     serializer_class = LoginSerializer
+    permission_classes = [
+        permissions.AllowAny
+    ]
 
     def post(self, request, *a, **k):
         serializer = self.get_serializer(data=request.data)

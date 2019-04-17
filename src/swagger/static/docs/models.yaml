@@ -121,3 +121,15 @@ Equipment:
       example: "/path/to"
   xml:
     Equipment
+User:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 2
+    username:
+      type: string
+      example: test
+    email:
+      type: string
+      example: test@test.com

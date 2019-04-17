@@ -1,2 +1,56 @@
 200all:
-  description: "ok"
+  description: A list of featured equipments
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../models.yaml#/Equipment'
+          pagination:
+            type: object
+            properties:
+              per_page:
+                type: integer
+                example: 5
+              total_count:
+                type: integer
+                example: 1
+200single:
+  description: Data of current featured equipment
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            $ref: '../models.yaml#/Equipment'
+401error:
+  description: invalid token
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          detail:
+            type: string
+            example: "Authentication credentials were not provided."
+403error:
+  description: to many featured in database!
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            additionalProperties: {}
+          errors:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Message limit was exceeded!"
