@@ -9,6 +9,8 @@ tags:
     description: "Operations with user"
   - name: "featured equipment"
     description: "user`s featured equipment"
+  - name: additional
+    description: Additional requests
 servers:
   - url: "http://localhost:8000"
 paths:
@@ -90,6 +92,11 @@ paths:
       $ref: ./featured/paths.yaml#/delete
       security:
         - Token: []
+  /api/send-message:
+    post:
+      tags:
+        - additional
+      $ref: ./additional/paths.yaml#/sendMessage
 components:
   securitySchemes:
     Token:

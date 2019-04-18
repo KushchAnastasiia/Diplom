@@ -1,0 +1,27 @@
+sendMessage:
+  tags:
+    - additional
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  requestBody:
+    content:
+      'application/json':
+        schema:
+          properties:
+            title:
+              description: Message title
+              type: string
+              example: test
+            description:
+              description: Message description
+              type: string
+              example: test description
+          required:
+            - equipment_id
+  responses:
+    200:
+      $ref: responses.yaml#/200ok
+    '5XX':
+      description: Unexpected error.

@@ -15,5 +15,7 @@ class SendMessageViewSet(generics.GenericAPIView):
             request.data.get('description', ''))
 
         return Response({
-            "data": None
+            "data": {
+                "message": "Message is sending!"
+            }
         }, 200)

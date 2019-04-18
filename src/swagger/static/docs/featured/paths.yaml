@@ -59,7 +59,6 @@ create:
               type: string
               example: 1
           required:
-            - user_id
             - equipment_id
   responses:
     200:

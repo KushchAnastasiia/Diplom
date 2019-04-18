@@ -1,0 +1,13 @@
+200ok:
+  description: Succesfull message sending!
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            propertirties:
+              message:
+                type: string
+                example: "Message is sending!"
