@@ -1,4 +1,5 @@
 sendMessage:
+  description: "Api for sending feedback via gmail message(credentials in _config/app_config.ini at MAIL part)"
   tags:
     - additional
   consumes:
