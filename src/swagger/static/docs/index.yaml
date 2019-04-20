@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: "1.0.0"
-  title: "Medical API documentation"
+  title: "Medical API documentation123"
 tags:
   - name: "equipment"
     description: "CRUD equipment"
@@ -97,6 +97,37 @@ paths:
       tags:
         - additional
       $ref: ./additional/paths.yaml#/sendMessage
+  /api/countries/:
+    get:
+      tags:
+        - additional
+      $ref: ./additional/paths.yaml#/getCountries
+  /api/types/:
+    get:
+      tags:
+        - additional
+      $ref: ./additional/paths.yaml#/getTypes
+  /api/groups/:
+    get:
+      tags:
+        - additional
+      $ref: ./additional/paths.yaml#/getGroups
+  /api/subgroups/:
+    get:
+      tags:
+        - additional
+      $ref: ./additional/paths.yaml#/getSubgroups
+  /api/manufacturers/:
+    get:
+      tags:
+        - additional
+      $ref: ./additional/paths.yaml#/getManufacturers
+  /api/markets/:
+    get:
+      tags:
+        - additional
+      $ref: ./additional/paths.yaml#/getMarkets
+
 components:
   securitySchemes:
     Token:

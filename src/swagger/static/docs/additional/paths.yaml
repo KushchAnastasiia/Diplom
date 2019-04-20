@@ -26,3 +26,81 @@ sendMessage:
       $ref: responses.yaml#/200mailSended
     '5XX':
       description: Unexpected error.
+getCountries:
+  description: "get country list"
+  tags:
+    - additional
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  responses:
+    200:
+      $ref: responses.yaml#/200country
+    '5XX':
+      description: Unexpected error.
+getGroups:
+  description: "get groups list"
+  tags:
+    - additional
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  responses:
+    200:
+      $ref: responses.yaml#/200groups
+    '5XX':
+      description: Unexpected error.
+getSubgroups:
+  description: "get subgroups list"
+  tags:
+    - additional
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  responses:
+    200:
+      $ref: responses.yaml#/200subgroups
+    '5XX':
+      description: Unexpected error.
+getManufacturers:
+  description: "get manufacturers list"
+  tags:
+    - additional
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  responses:
+    200:
+      $ref: responses.yaml#/200manufacturers
+    '5XX':
+      description: Unexpected error.
+getMarkets:
+  description: "get markets list"
+  tags:
+    - additional
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  responses:
+    200:
+      $ref: responses.yaml#/200markets
+    '5XX':
+      description: Unexpected error.
+getTypes:
+  description: "get types list"
+  tags:
+    - additional
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  responses:
+    200:
+      $ref: responses.yaml#/200types
+    '5XX':
+      description: Unexpected error.

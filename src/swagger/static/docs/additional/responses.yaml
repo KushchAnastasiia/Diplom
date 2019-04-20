@@ -11,3 +11,69 @@
               message:
                 type: string
                 example: "Message is sending!"
+200country:
+  description: Succesfull message sending!
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../models.yaml#/Country'
+200types:
+  description: Succesfull message sending!
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../models.yaml#/Type'
+200markets:
+  description: Succesfull message sending!
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../models.yaml#/Market'
+200manufacturers:
+  description: Succesfull message sending!
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../models.yaml#/Manufacturer'
+200subgroups:
+  description: Succesfull message sending!
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../models.yaml#/SubGroup'
+200groups:
+  description: Succesfull message sending!
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '../models.yaml#/Group'

@@ -57,7 +57,7 @@ Type:
   properties:
     name:
       type: string
-      example: Ukraine
+      example: type1
   xml:
     name: Type
 Group:
@@ -67,7 +67,7 @@ Group:
   properties:
     name:
       type: string
-      example: Ukraine
+      example: group1
   xml:
     name: Group
 SubGroup:
@@ -78,7 +78,7 @@ SubGroup:
   properties:
     name:
       type: string
-      example: Ukraine
+      example: subgroup1
     group:
       $ref: '#/Group'
   xml:
