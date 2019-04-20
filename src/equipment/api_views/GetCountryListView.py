@@ -14,9 +14,9 @@ class GetCountryListView(generics.ListAPIView):
     queryset = Country.objects.all()
 
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(Country.objects.all(),
+                                         context=self.get_serializer_context(), many=True)
 
-        serializer = self.get_serializer(queryset, many=True)
         return Response({
             "data": serializer.data
         }, status=status.HTTP_200_OK)
