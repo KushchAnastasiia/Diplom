@@ -1,0 +1,2 @@
+class GetGroupListView:
+    pass

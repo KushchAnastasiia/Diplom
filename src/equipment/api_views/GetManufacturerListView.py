@@ -1,0 +1,2 @@
+class GetManufacturerListView:
+    pass

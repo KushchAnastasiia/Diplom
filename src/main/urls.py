@@ -26,4 +26,4 @@ urlpatterns = [
     url(r'^', include('equipment.urls')),
     url(r'^', include('accounts.urls')),
     url(r'^', include('personal_area.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,2 @@
+class GetTypeListView:
+    pass
