@@ -23,6 +23,6 @@ sendMessage:
             - equipment_id
   responses:
     200:
-      $ref: responses.yaml#/200ok
+      $ref: responses.yaml#/200mailSended
     '5XX':
       description: Unexpected error.

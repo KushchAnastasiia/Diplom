@@ -1,4 +1,4 @@
-200ok:
+200mailSended:
   description: Succesfull message sending!
   content:
     application/json:
