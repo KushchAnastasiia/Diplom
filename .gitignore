@@ -118,3 +118,6 @@ docker-compose.yaml
 
 static_files
 static_files/*
+
+data
+data/*
