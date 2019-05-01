@@ -7,3 +7,4 @@ django-ckeditor
 djangorestframework
 django-rest-knox
 mysqlclient
+django-cors-headers

@@ -18,3 +18,5 @@ debug=False
 eq_per_page=5
 host=*
 user_featured_count=20
+cors_white_list=localhost:3000,
+cors_allow_all=True

@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'equipment',
+    'corsheaders',
     'ckeditor_uploader',
     'ckeditor',
     'rest_framework',
@@ -69,6 +70,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -197,3 +199,7 @@ LOGGING = {
         },
     },
 }
+
+CORS_ORIGIN_WHITELIST = config.get('APP', 'cors_white_list').split(',')
+
+CORS_ORIGIN_ALLOW_ALL = bool(config.get('APP', 'cors_allow_all'))
