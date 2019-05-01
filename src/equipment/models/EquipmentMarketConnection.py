@@ -10,7 +10,7 @@ class EquipmentMarketConnection(models.Model):
     market = models.ForeignKey(
         to=Market, on_delete=models.CASCADE
     )
-    market_url = models.CharField(max_length=256, default="")
+    eq_in_market_url = models.CharField(max_length=256, default="")
 
     def __str__(self):
         return f'{self.equipment.name} --> {self.market.name}'

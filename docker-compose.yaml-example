@@ -20,31 +20,49 @@ services:
       - rabbitmq
       - celery_worker
     # restart: unless-stopped
-  postgres:
-    container_name: med_postgres_container
-    image: postgres:11.2
+  mysql:
+    container_name: med_mysql_container
+    image: mysql:5.7
     restart: always
-    environment:
-      POSTGRES_PASSWORD:
-      PGDATA: /data/postgres
     volumes:
-      - postgres:/data/postgres
+      - ./data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_DATABASE=med
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=adminpass
+      - MYSQL_ROOT_PASSWORD=adminpass
     ports:
-      - "5432:5432"
+      - "3306:3306"
+    expose:
+      - "3306"
     networks:
       - med
-  pgadmin:
-    container_name: med_pgadmin_container
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@med.com
-      PGADMIN_DEFAULT_PASSWORD:
-    volumes:
-      - pgadmin:/root/.pgadmin
-    ports:
-      - "5050:5050"
-    networks:
-      - med
+  # postgres:
+  #   container_name: med_postgres_container
+  #   image: postgres:11.2
+  #   restart: always
+  #   environment:
+  #     POSTGRES_PASSWORD: adminpassword
+  #     PGDATA: /data/postgres
+  #   volumes:
+  #     - postgres:/data/postgres
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - med
+  # pgadmin:
+  #   container_name: med_pgadmin_container
+  #   image: dpage/pgadmin4
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: admin@med.com
+  #     PGADMIN_DEFAULT_PASSWORD: adminpassword
+  #   volumes:
+  #     - pgadmin:/root/.pgadmin
+  #   ports:
+  #     - "5050:80"
+  #   networks:
+  #     - med
 #    restart: unless-stopped
   rabbitmq:
     container_name: med_rabbitmq_container
@@ -68,7 +86,7 @@ services:
       - med
     depends_on:
       - rabbitmq
-      - postgres
+      - mysql
     restart: unless-stopped
 
 networks:
@@ -76,5 +94,6 @@ networks:
     driver: bridge
 
 volumes:
+  mysql:
   postgres:
   pgadmin:

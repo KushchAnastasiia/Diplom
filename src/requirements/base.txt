@@ -6,3 +6,4 @@ Pillow
 django-ckeditor
 djangorestframework
 django-rest-knox
+mysqlclient

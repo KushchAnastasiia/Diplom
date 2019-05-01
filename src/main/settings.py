@@ -106,12 +106,12 @@ DATABASES = {
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': config.get('DB', 'name'),
         'USER': config.get('DB', 'user'),
         'PASSWORD': config.get('DB', 'pass'),
         'HOST': config.get('DB', 'host'),
-        'PORT': 5432,
+        'PORT': config.get('DB', 'port'),
     }
 }
 

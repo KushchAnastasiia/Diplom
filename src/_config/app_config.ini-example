@@ -3,17 +3,18 @@ username=
 password=
 
 [DB]
-host=
-user=
-name=
-pass=
+host=mysql
+user=user
+name=med
+pass=adminpass
+port=3306
 
 [RABBIT]
-url=amqp://guest:guest@localhost:5672
+url=amqp://user:user@rabbitmq:5672
 
 [APP]
 secret=
 debug=False
 eq_per_page=5
-host=
+host=*
 user_featured_count=20
