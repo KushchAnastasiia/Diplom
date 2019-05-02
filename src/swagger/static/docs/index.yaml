@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: "1.0.0"
-  title: "Medical API documentation"
+  title: "Medical API documentation\n You can also find admin panel at http://localhost:8000/admin"
 tags:
   - name: "equipment"
     description: "CRUD equipment"
