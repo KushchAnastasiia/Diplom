@@ -59,7 +59,8 @@ INSTALLED_APPS = [
     'knox',
     'accounts',
     'personal_area',
-    'swagger'
+    'swagger',
+    'tests',
 ]
 
 REST_FRAMEWORK = {
@@ -117,7 +118,6 @@ DATABASES = {
         'HOST': config.get('DB', 'host'),
         'PORT': config.get('DB', 'port'),
         'TEST': {
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
             'DEPENDENCIES': ['sqlite']
         }
     },
