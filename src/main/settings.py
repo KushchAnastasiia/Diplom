@@ -64,7 +64,13 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':
-    ('knox.auth.TokenAuthentication', )
+    ('knox.auth.TokenAuthentication', ),
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    'TEST_REQUEST_RENDERER_CLASSES': (
+        'rest_framework.renderers.MultiPartRenderer',
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.TemplateHTMLRenderer'
+    )
 }
 
 MIDDLEWARE = [
@@ -103,10 +109,6 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': config.get('DB', 'name'),
@@ -114,6 +116,14 @@ DATABASES = {
         'PASSWORD': config.get('DB', 'pass'),
         'HOST': config.get('DB', 'host'),
         'PORT': config.get('DB', 'port'),
+        'TEST': {
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'DEPENDENCIES': ['sqlite']
+        }
+    },
+    'sqlite': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
