@@ -7,8 +7,10 @@ class EquipmentTestCase(APITestCase):
 
     # def modify_settings(self, **kwargs):
 
-
     def setUp(self) -> None:
+
+
+
         eq = {
             "name": "Тонометр автоматический Gamma Smart",
             "description": "Тонометр автоматический с манжетой на плечо Gamma Smart предназначен для определения " +
@@ -23,20 +25,25 @@ class EquipmentTestCase(APITestCase):
             "type_of_id": 1
         }
 
-        # e = Equipment(eq)
-        # e.save()
+        e = Equipment(**eq)
+        e.save()
 
     def test_getting_equipment_list(self):
-        # response = self.client.get(
-        #     path='/api/equipment?offset=1',
-        #     format="json", **{'accept': 'application/json'}
-        # )
-        #
-        # original_structure = {
-        #     "data": [],
-        #     "pagination": {}
-        # }
-        #
-        # self.assertEqual(response.status_code, status.HTTP_200_OK)
-        # self.assertContains(response=response, text=original_structure)
-        self.assertEqual(200, 200)
+        response = self.client.get(
+            path='/api/equipment?offset=1', content_type="application/json",
+            follow=True,
+            format="json", **{'accept': 'application/json'}
+        )
+
+        original_structure = {
+            "data": [],
+            "pagination": {}
+        }
+
+        # print(dir(response))
+        print('*' * 10)
+        print(response.json())
+        print('*' * 10)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertContains(response=response, text=original_structure)
+        # self.assertEqual(200, 200)
