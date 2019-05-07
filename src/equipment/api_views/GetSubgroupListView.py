@@ -18,11 +18,11 @@ class GetSubgroupListView(generics.ListAPIView):
                                          context=self.get_serializer_context(), many=True).data
 
         for x in serializer:
-            country = GroupSerializer(
+            group = GroupSerializer(
                 Group.objects.filter(id=int(x["group"])).first()
             ).data
 
-            x['group'] = country
+            x['group'] = group
 
         return Response({
             "data": serializer
