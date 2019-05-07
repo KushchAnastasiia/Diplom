@@ -1,8 +1,8 @@
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_framework import status
-from ..serializers import GroupSerializer
-from ..models import Group
+from ..serializers import GroupSerializer, SubGroupSerializer
+from ..models import Group, SubGroup
 
 
 class GetGroupListView(generics.ListAPIView):
@@ -14,9 +14,13 @@ class GetGroupListView(generics.ListAPIView):
     queryset = Group.objects.all()
 
     def list(self, request, *args, **kwargs):
-        serializer = self.get_serializer(Group.objects.all(),
-                                         context=self.get_serializer_context(), many=True)
+        groups = self.get_serializer(Group.objects.all(),
+                                         context=self.get_serializer_context(), many=True).data
 
+        for x in groups:
+            x['subgroups'] = SubGroupSerializer(
+                SubGroup.objects.filter(group=x['id']), many=True
+            ).data
         return Response({
-            "data": serializer.data
+            "data":groups
         }, status=status.HTTP_200_OK)
