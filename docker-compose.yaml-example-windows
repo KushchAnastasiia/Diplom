@@ -16,7 +16,8 @@ services:
     networks:
       - med
     depends_on:
-      - postgres
+      # - postgres
+      - mysql
       - rabbitmq
       - celery_worker
     # restart: unless-stopped

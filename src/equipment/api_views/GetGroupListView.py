@@ -21,5 +21,5 @@ class GetGroupListView(generics.ListAPIView):
                 SubGroup.objects.filter(group=x['id']), many=True
             ).data
         return Response({
-            "data": groups
+            "data":groups
         }, status=status.HTTP_200_OK)

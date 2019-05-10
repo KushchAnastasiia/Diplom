@@ -28,18 +28,17 @@ class AddFeaturedEquipmentView(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         if request.user:
-            featured_list = FeaturedEquipment.objects.filter(user_id=request.user.id)
+            featured_list = FeaturedEquipment.objects.filter(user_id=request.user)
             featured_count = len(FeaturedEquipment.objects.filter(
-                user_id=request.user.id).all())
+                user_id=request.user).all())
 
             featured_data = []
 
             for x in featured_list:
-                featured_data.append(Equipment.objects.filter(id=x.equipment_id).first())
+                featured_data.append(Equipment.objects.filter(id=x.equipment_id.id).first())
 
             featured_serializer = EquipmentSerializer(
-                featured_data,
-                context=self.get_serializer_context(), many=True).data
+                featured_data, many=True).data
 
             featured_serializer = [get_full_equipment_data(x) for x in featured_serializer]
 
@@ -48,7 +47,7 @@ class AddFeaturedEquipmentView(viewsets.ModelViewSet):
                     'current_count': featured_count,
                     'featured': featured_serializer,
                 }
-            }, status=status.HTTP_202_ACCEPTED)
+            }, status=status.HTTP_200_OK)
         return Response({
             'data': {
                 'featured': [],
@@ -61,15 +60,15 @@ class AddFeaturedEquipmentView(viewsets.ModelViewSet):
     def retrieve(self, request, pk=None, *args, **kwargs):
         if request.user and pk:
             featured = FeaturedEquipment.objects.filter(
-                user_id=request.user.id, equipment_id=pk).first()
+                user_id=request.user, equipment_id=pk).first()
 
             featured_serializer = EquipmentSerializer(
-                Equipment.objects.filter(id=featured.equipment_id).first(),
+                Equipment.objects.filter(id=featured.equipment_id.id).first(),
                 context=self.get_serializer_context(), many=False).data
 
             return Response({
                 'data': get_full_equipment_data(featured_serializer)
-            }, status=status.HTTP_202_ACCEPTED)
+            }, status=status.HTTP_200_OK)
 
         return Response({
             'data': {

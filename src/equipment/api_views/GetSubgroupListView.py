@@ -27,4 +27,3 @@ class GetSubgroupListView(generics.ListAPIView):
         return Response({
             "data": serializer
         }, status=status.HTTP_200_OK)
-
