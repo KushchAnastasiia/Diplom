@@ -38,6 +38,7 @@ services:
       - "3306"
     networks:
       - med
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
   # postgres:
   #   container_name: med_postgres_container
   #   image: postgres:11.2
